@@ -11,9 +11,6 @@ android:
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
     - $ANDROID_TARGET
     - sys-img-armeabi-v7a-$ANDROID_TARGET
-    - extra-android-support
-    - extra-android-m2repository
-    - extra-google-m2repository
 jdk: oraclejdk8
 before_install:
 - yes | sdkmanager "platforms;android-27"
