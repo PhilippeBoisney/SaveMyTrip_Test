@@ -5,7 +5,6 @@
     <!-- COMMON -->
     <string name="title_trip_book">Carnet de voyage</string>
     <string name="title_todo_list">Choses à faire</string>
-    <string name="title_tools_box">Ma boite à outils</string>
     <string name="title_permission">Cette application a besoin de permission pour fonctionner</string>
     <string name="error_happened">Une erreur s\'est produite !</string>
 
@@ -27,7 +26,6 @@
 
     <string name="trip_book_edit_text_placeholder">Commence à écrire ton voyage ici&#8230;</string>
     <string name="trip_book_button">Enregistrer</string>
-
     <string name="trip_book_share">Partager votre carnet sur</string>
 
     <!-- TODOLIST ACTIVITY -->

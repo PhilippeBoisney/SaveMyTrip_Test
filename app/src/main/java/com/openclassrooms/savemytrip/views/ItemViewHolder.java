@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.todolist;
+package com.openclassrooms.savemytrip.views;
 
 import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +26,6 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     @BindView(R.id.activity_todo_list_item_remove) ImageButton imageButton;
 
     // FOR DATA
-    // 2 - Declare a Weak Reference to our Callback
     private WeakReference<ItemAdapter.Listener> callbackWeakRef;
 
     public ItemViewHolder(View itemView) {

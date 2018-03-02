@@ -1,15 +1,10 @@
 package com.openclassrooms.savemytrip;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.openclassrooms.savemytrip.base.BaseActivity;
-import com.openclassrooms.savemytrip.todolist.TodoListActivity;
-import com.openclassrooms.savemytrip.trip_book.TripBookActivity;
+import com.openclassrooms.savemytrip.activities.TodoListActivity;
+import com.openclassrooms.savemytrip.activities.TripBookActivity;
 
 import butterknife.OnClick;
 

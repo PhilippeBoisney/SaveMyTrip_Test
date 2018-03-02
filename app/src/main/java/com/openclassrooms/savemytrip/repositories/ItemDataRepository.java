@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.database.data_source;
+package com.openclassrooms.savemytrip.repositories;
 
 import com.openclassrooms.savemytrip.database.dao.ItemDao;
 import com.openclassrooms.savemytrip.models.Item;
@@ -11,11 +11,11 @@ import io.reactivex.Flowable;
  * Created by Philippe on 27/02/2018.
  */
 
-public class ItemDataSource {
+public class ItemDataRepository {
 
     private final ItemDao itemDao;
 
-    public ItemDataSource(ItemDao itemDao) {
+    public ItemDataRepository(ItemDao itemDao) {
         this.itemDao = itemDao;
     }
 

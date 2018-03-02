@@ -1,11 +1,11 @@
-package com.openclassrooms.savemytrip.view_model;
+package com.openclassrooms.savemytrip.injection;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.openclassrooms.savemytrip.database.data_source.ItemDataSource;
-import com.openclassrooms.savemytrip.database.data_source.UserDataSource;
-import com.openclassrooms.savemytrip.todolist.ItemViewModel;
+import com.openclassrooms.savemytrip.repositories.ItemDataRepository;
+import com.openclassrooms.savemytrip.repositories.UserDataRepository;
+import com.openclassrooms.savemytrip.view_model.ItemViewModel;
 
 /**
  * Created by Philippe on 27/02/2018.
@@ -14,10 +14,10 @@ import com.openclassrooms.savemytrip.todolist.ItemViewModel;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
-    private final ItemDataSource itemDataSource;
-    private final UserDataSource userDataSource;
+    private final ItemDataRepository itemDataSource;
+    private final UserDataRepository userDataSource;
 
-    public ViewModelFactory(ItemDataSource itemDataSource, UserDataSource userDataSource) {
+    public ViewModelFactory(ItemDataRepository itemDataSource, UserDataRepository userDataSource) {
         this.itemDataSource = itemDataSource;
         this.userDataSource = userDataSource;
     }

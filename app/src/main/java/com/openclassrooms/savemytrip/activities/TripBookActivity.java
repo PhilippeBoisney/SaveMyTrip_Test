@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.trip_book;
+package com.openclassrooms.savemytrip.activities;
 
 import android.content.Intent;
 import android.net.Uri;

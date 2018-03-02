@@ -72,19 +72,6 @@
                 android:layout_margin="@dimen/default_margin"
                 android:padding="@dimen/default_large_margin"/>
 
-            <!-- BUTTON TOOLS BOX -->
-            <Button
-                android:id="@+id/main_activity_button_tools_box"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title_tools_box"
-                android:textColor="#fff"
-                android:textSize="@dimen/default_text_size"
-                android:background="@drawable/button_radius_second_color"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_margin="@dimen/default_margin"
-                android:padding="@dimen/default_large_margin"/>
-
         </LinearLayout>
 
     </LinearLayout>

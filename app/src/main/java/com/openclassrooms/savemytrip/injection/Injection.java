@@ -3,9 +3,8 @@ package com.openclassrooms.savemytrip.injection;
 import android.content.Context;
 
 import com.openclassrooms.savemytrip.database.SaveMyTripDatabase;
-import com.openclassrooms.savemytrip.database.data_source.ItemDataSource;
-import com.openclassrooms.savemytrip.database.data_source.UserDataSource;
-import com.openclassrooms.savemytrip.view_model.ViewModelFactory;
+import com.openclassrooms.savemytrip.repositories.ItemDataRepository;
+import com.openclassrooms.savemytrip.repositories.UserDataRepository;
 
 /**
  * Created by Philippe on 27/02/2018.
@@ -13,19 +12,19 @@ import com.openclassrooms.savemytrip.view_model.ViewModelFactory;
 
 public class Injection {
 
-    public static ItemDataSource provideItemDataSource(Context context) {
+    public static ItemDataRepository provideItemDataSource(Context context) {
         SaveMyTripDatabase database = SaveMyTripDatabase.getInstance(context);
-        return new ItemDataSource(database.itemDao());
+        return new ItemDataRepository(database.itemDao());
     }
 
-    public static UserDataSource provideUserDataSource(Context context) {
+    public static UserDataRepository provideUserDataSource(Context context) {
         SaveMyTripDatabase database = SaveMyTripDatabase.getInstance(context);
-        return new UserDataSource(database.userDao());
+        return new UserDataRepository(database.userDao());
     }
 
     public static ViewModelFactory provideViewModelFactory(Context context) {
-        ItemDataSource dataSourceItem = provideItemDataSource(context);
-        UserDataSource dataSourceUser = provideUserDataSource(context);
+        ItemDataRepository dataSourceItem = provideItemDataSource(context);
+        UserDataRepository dataSourceUser = provideUserDataSource(context);
         return new ViewModelFactory(dataSourceItem, dataSourceUser);
     }
 }

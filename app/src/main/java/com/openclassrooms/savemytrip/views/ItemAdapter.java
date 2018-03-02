@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.todolist;
+package com.openclassrooms.savemytrip.views;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +43,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(ItemViewHolder viewHolder, int position) {
-        Log.e("TAG", "UPDATE POSITION : "+position);
         viewHolder.updateWithItem(this.items.get(position), this.callback);
     }
 

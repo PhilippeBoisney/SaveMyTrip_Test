@@ -1,11 +1,9 @@
-package com.openclassrooms.savemytrip.todolist;
+package com.openclassrooms.savemytrip.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,8 +17,10 @@ import com.openclassrooms.savemytrip.base.BaseActivity;
 import com.openclassrooms.savemytrip.injection.Injection;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
+import com.openclassrooms.savemytrip.views.ItemAdapter;
 import com.openclassrooms.savemytrip.utils.ItemClickSupport;
-import com.openclassrooms.savemytrip.view_model.ViewModelFactory;
+import com.openclassrooms.savemytrip.injection.ViewModelFactory;
+import com.openclassrooms.savemytrip.view_model.ItemViewModel;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class TodoListActivity extends BaseActivity implements ItemAdapter.Listener{
+public class TodoListActivity extends BaseActivity implements ItemAdapter.Listener {
 
     // FOR DESIGN
     @BindView(R.id.todo_list_activity_recycler_view) RecyclerView recyclerView;

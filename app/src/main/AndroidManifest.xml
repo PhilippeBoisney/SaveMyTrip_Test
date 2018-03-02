@@ -29,7 +29,7 @@
 
         <!-- TRIP_BOOK ACTIVITY -->
         <activity
-            android:name=".trip_book.TripBookActivity"
+            android:name=".activities.TripBookActivity"
             android:label="@string/title_trip_book"
             android:parentActivityName=".MainActivity" />
 
@@ -46,7 +46,7 @@
 
         <!-- TODOLIST ACTIVITY -->
         <activity
-            android:name=".todolist.TodoListActivity"
+            android:name=".activities.TodoListActivity"
             android:label="@string/title_todo_list"
             android:parentActivityName=".MainActivity"/>
 

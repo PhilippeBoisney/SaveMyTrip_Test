@@ -1,10 +1,7 @@
-package com.openclassrooms.savemytrip.database.data_source;
+package com.openclassrooms.savemytrip.repositories;
 
 import com.openclassrooms.savemytrip.database.dao.UserDao;
-import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
-
-import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -12,11 +9,11 @@ import io.reactivex.Flowable;
  * Created by Philippe on 28/02/2018.
  */
 
-public class UserDataSource {
+public class UserDataRepository {
 
     private final UserDao userDao;
 
-    public UserDataSource(UserDao userDao) {
+    public UserDataRepository(UserDao userDao) {
         this.userDao = userDao;
     }
 

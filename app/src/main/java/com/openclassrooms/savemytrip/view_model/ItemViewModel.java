@@ -1,11 +1,10 @@
-package com.openclassrooms.savemytrip.todolist;
+package com.openclassrooms.savemytrip.view_model;
 
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import com.openclassrooms.savemytrip.database.data_source.ItemDataSource;
-import com.openclassrooms.savemytrip.database.data_source.UserDataSource;
+import com.openclassrooms.savemytrip.repositories.ItemDataRepository;
+import com.openclassrooms.savemytrip.repositories.UserDataRepository;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
 
@@ -21,14 +20,14 @@ import io.reactivex.Flowable;
 public class ItemViewModel extends ViewModel {
 
     // DATA SOURCES
-    private final ItemDataSource itemDataSource;
-    private final UserDataSource userDataSource;
+    private final ItemDataRepository itemDataSource;
+    private final UserDataRepository userDataSource;
 
     // DATA
     @Nullable
     private User currentUser;
 
-    public ItemViewModel(ItemDataSource itemDataSource, UserDataSource userDataSource) {
+    public ItemViewModel(ItemDataRepository itemDataSource, UserDataRepository userDataSource) {
         this.itemDataSource = itemDataSource;
         this.userDataSource = userDataSource;
     }
