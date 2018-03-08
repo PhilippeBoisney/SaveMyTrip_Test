@@ -6,7 +6,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.openclassrooms.savemytrip.database.SaveMyTripDatabase;
-import com.openclassrooms.savemytrip.models.Address;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
 import com.openclassrooms.savemytrip.utils.LiveDataTestUtil;
@@ -34,7 +33,7 @@ public class ItemDaoTest {
 
     // DATA SET FOR TEST
     private static long USER_ID = 1;
-    private static User USER_DEMO = new User(USER_ID, "Philippe", "https://www.google.fr, ", new Address("7 rue du test", "Etat de test", "Ville de test",404));
+    private static User USER_DEMO = new User(USER_ID, "Philippe", "https://www.google.fr, ");
     private static Item NEW_ITEM_PLACE_TO_VISIT = new Item("Visite cet endroit de rêve !", 0, USER_ID);
     private static Item NEW_ITEM_IDEA = new Item("On pourrait faire du chien de traîneau ?", 1, USER_ID);
     private static Item NEW_ITEM_RESTAURANTS = new Item("Ce restaurant à l'air sympa", 2, USER_ID);
@@ -61,7 +60,7 @@ public class ItemDaoTest {
         this.database.userDao().createUser(USER_DEMO);
         // TEST
         User user = LiveDataTestUtil.getValue(this.database.userDao().getUser(USER_ID));
-        assertTrue(user.getUsername().equals(USER_DEMO.getUsername()) && user.getId() == USER_ID && user.getAddress().getPostCode() == USER_DEMO.getAddress().getPostCode());
+        assertTrue(user.getUsername().equals(USER_DEMO.getUsername()) && user.getId() == USER_ID);
     }
 
     @Test
