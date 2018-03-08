@@ -11,7 +11,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.savemytrip.database.SaveMyTripDatabase;
-import com.openclassrooms.savemytrip.models.Address;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
 import com.openclassrooms.savemytrip.provider.ItemContentProvider;

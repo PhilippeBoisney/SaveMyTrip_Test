@@ -13,7 +13,6 @@ import android.util.Log;
 import com.openclassrooms.savemytrip.R;
 import com.openclassrooms.savemytrip.database.dao.ItemDao;
 import com.openclassrooms.savemytrip.database.dao.UserDao;
-import com.openclassrooms.savemytrip.models.Address;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
 
@@ -59,10 +58,6 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
                 contentValues.put("id", 1);
                 contentValues.put("username", "Philippe");
                 contentValues.put("urlPicture", "https://oc-user.imgix.net/users/avatars/15175844164713_frame_523.jpg?auto=compress,format&q=80&h=100&dpr=2");
-                contentValues.put("street", "Station Spatiale Internationale");
-                contentValues.put("state", "Orbite terrestre basse");
-                contentValues.put("city", "Terre");
-                contentValues.put("postCode", 404);
 
                 db.insert("User", OnConflictStrategy.IGNORE, contentValues);
             }

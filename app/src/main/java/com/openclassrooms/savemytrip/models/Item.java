@@ -14,8 +14,7 @@ import android.content.ContentValues;
 
 @Entity(foreignKeys = @ForeignKey(entity = User.class,
         parentColumns = "id",
-        childColumns = "userId"),
-        indices = {@Index("userId")})
+        childColumns = "userId"))
 
 public class Item {
 

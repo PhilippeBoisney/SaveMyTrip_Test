@@ -23,3 +23,9 @@ before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-window &
   - android-wait-for-emulator
+
+script:
+  — ./gradlew build jacocoTestReport
+
+after_success:
+  — bash <(curl -s https://codecov.io/bash)
