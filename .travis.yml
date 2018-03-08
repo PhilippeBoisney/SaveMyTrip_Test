@@ -25,7 +25,8 @@ before_script:
   - android-wait-for-emulator
 
 script:
-  — ./gradlew build jacocoTestReport
+  — ./gradlew build jacocoTestReport assembleAndroidTest
+  - ./gradlew connectedCheck
 
 after_success:
   — bash <(curl -s https://codecov.io/bash)
