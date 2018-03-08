@@ -1,5 +1,6 @@
 package com.openclassrooms.savemytrip.database.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -12,8 +13,6 @@ import com.openclassrooms.savemytrip.models.Item;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-
 /**
  * Created by Philippe on 27/02/2018.
  */
@@ -22,7 +21,7 @@ import io.reactivex.Flowable;
 public interface ItemDao {
 
     @Query("SELECT * FROM Item WHERE userId = :userId")
-    Flowable<List<Item>> getItems(long userId);
+    LiveData<List<Item>> getItems(long userId);
 
     @Query("SELECT * FROM Item WHERE userId = :userId")
     Cursor getItemsWithCursor(long userId);

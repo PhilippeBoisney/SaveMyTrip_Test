@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.activities;
+package com.openclassrooms.savemytrip.tripbook;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -106,11 +106,19 @@ public class TripBookActivity extends BaseActivity {
         this.readFromStorage();
     }
 
-    // --------------------
-    // UI
-    // --------------------
+    // ----------------------------------
+    // UTILS - WRITE ON STORAGE
+    // ----------------------------------
 
+    @AfterPermissionGranted(RC_STORAGE_WRITE_PERMS)
     private void readFromStorage(){
+
+        //CHECK PERMISSION
+        if (!EasyPermissions.hasPermissions(this, WRITE_EXTERNAL_STORAGE)) {
+            EasyPermissions.requestPermissions(this, getString(R.string.title_permission), RC_STORAGE_WRITE_PERMS, WRITE_EXTERNAL_STORAGE);
+            return;
+        }
+
         if (StorageUtils.isExternalStorageReadable()){
             if (this.radioButtonExternalChoice.isChecked()){
                 // EXTERNAL
@@ -134,11 +142,6 @@ public class TripBookActivity extends BaseActivity {
         }
     }
 
-    // ----------------------------------
-    // UTILS - WRITE ON STORAGE
-    // ----------------------------------
-
-    @AfterPermissionGranted(RC_STORAGE_WRITE_PERMS)
     private void saveOnStorage(){
         if (this.radioButtonExternalChoice.isChecked()){
             this.writeOnExternalStorage(); //Save on external storage

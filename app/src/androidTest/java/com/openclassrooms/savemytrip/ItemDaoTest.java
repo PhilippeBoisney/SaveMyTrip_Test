@@ -9,12 +9,18 @@ import com.openclassrooms.savemytrip.database.SaveMyTripDatabase;
 import com.openclassrooms.savemytrip.models.Address;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
+import com.openclassrooms.savemytrip.utils.LiveDataTestUtil;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Philippe on 27/02/2018.
@@ -50,26 +56,23 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void insertAndGetUser() {
+    public void insertAndGetUser() throws InterruptedException {
         // BEFORE : Adding a new user
         this.database.userDao().createUser(USER_DEMO);
         // TEST
-        this.database.userDao().getUser(USER_ID)
-                .test()
-                .assertValue(user -> user.getUsername().equals(USER_DEMO.getUsername()) && user.getId() == USER_ID && user.getAddress().getPostCode() == USER_DEMO.getAddress().getPostCode());
+        User user = LiveDataTestUtil.getValue(this.database.userDao().getUser(USER_ID));
+        assertTrue(user.getUsername().equals(USER_DEMO.getUsername()) && user.getId() == USER_ID && user.getAddress().getPostCode() == USER_DEMO.getAddress().getPostCode());
     }
 
     @Test
-    public void getItemsWhenNoItemInserted() {
+    public void getItemsWhenNoItemInserted() throws InterruptedException {
         // TEST
-        this.database.itemDao().getItems(USER_ID)
-                .toList()
-                .test()
-                .assertEmpty();
+        List<Item> items = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID));
+        assertTrue(items.isEmpty());
     }
 
     @Test
-    public void insertAndGetItems() {
+    public void insertAndGetItems() throws InterruptedException {
         // BEFORE : Adding demo user & demo items
 
         this.database.userDao().createUser(USER_DEMO);
@@ -78,38 +81,34 @@ public class ItemDaoTest {
         this.database.itemDao().insertItem(NEW_ITEM_RESTAURANTS);
 
         // TEST
-        this.database.itemDao().getItems(USER_ID)
-                .test()
-                .assertValue(items -> items.size() == 3);
+        List<Item> items = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID));
+        assertTrue(items.size() == 3);
     }
 
     @Test
-    public void insertAndUpdateItem() {
+    public void insertAndUpdateItem() throws InterruptedException {
         // BEFORE : Adding demo user & demo items. Next, update item added & re-save it
         this.database.userDao().createUser(USER_DEMO);
         this.database.itemDao().insertItem(NEW_ITEM_PLACE_TO_VISIT);
-        Item itemAdded = this.database.itemDao().getItems(USER_ID).test().values().get(0).get(0);
+        Item itemAdded = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID)).get(0);
         itemAdded.setSelected(true);
         this.database.itemDao().updateItem(itemAdded);
 
         //TEST
-        this.database.itemDao().getItems(USER_ID)
-                .test()
-                .assertValue(items -> items.size() == 1 && items.get(0).getSelected());
+        List<Item> items = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID));
+        assertTrue(items.size() == 1 && items.get(0).getSelected());
     }
 
     @Test
-    public void insertAndDeleteItem(){
+    public void insertAndDeleteItem() throws InterruptedException {
         // BEFORE : Adding demo user & demo item. Next, get the item added & delete it.
         this.database.userDao().createUser(USER_DEMO);
         this.database.itemDao().insertItem(NEW_ITEM_PLACE_TO_VISIT);
-        Item itemAdded = this.database.itemDao().getItems(USER_ID).test().values().get(0).get(0);
+        Item itemAdded = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID)).get(0);
         this.database.itemDao().deleteItem(itemAdded.getId());
 
         //TEST
-        this.database.itemDao().getItems(USER_ID)
-                .toList()
-                .test()
-                .assertEmpty();
+        List<Item> items = LiveDataTestUtil.getValue(this.database.itemDao().getItems(USER_ID));
+        assertTrue(items.isEmpty());
     }
 }

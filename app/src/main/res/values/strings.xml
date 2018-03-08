@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SaveMyTrip</string>
-    <string name="main_activity_description">Organise ton voyage de manière totalement déconnectée</string>
+    <string name="main_activity_description">Organise ton voyage de manière&#8230; totalement déconnectée !</string>
 
     <!-- COMMON -->
     <string name="title_trip_book">Carnet de voyage</string>

@@ -1,4 +1,4 @@
-package com.openclassrooms.savemytrip.activities;
+package com.openclassrooms.savemytrip.todolist;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -17,18 +17,13 @@ import com.openclassrooms.savemytrip.base.BaseActivity;
 import com.openclassrooms.savemytrip.injection.Injection;
 import com.openclassrooms.savemytrip.models.Item;
 import com.openclassrooms.savemytrip.models.User;
-import com.openclassrooms.savemytrip.views.ItemAdapter;
 import com.openclassrooms.savemytrip.utils.ItemClickSupport;
 import com.openclassrooms.savemytrip.injection.ViewModelFactory;
-import com.openclassrooms.savemytrip.view_model.ItemViewModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class TodoListActivity extends BaseActivity implements ItemAdapter.Listener {
 
@@ -41,7 +36,6 @@ public class TodoListActivity extends BaseActivity implements ItemAdapter.Listen
 
     // FOR DATA
     private ItemViewModel itemViewModel;
-    private final CompositeDisposable mDisposable = new CompositeDisposable();
     private ItemAdapter adapter;
     private static int USER_ID = 1;
 
@@ -59,12 +53,6 @@ public class TodoListActivity extends BaseActivity implements ItemAdapter.Listen
 
         this.getCurrentUser(USER_ID);
         this.getItems(USER_ID);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mDisposable.clear();
     }
 
     // -------------------
@@ -87,49 +75,35 @@ public class TodoListActivity extends BaseActivity implements ItemAdapter.Listen
 
     private void configureViewModel(){
         ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
-        itemViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ItemViewModel.class);
+        this.itemViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ItemViewModel.class);
+        this.itemViewModel.init(USER_ID);
     }
 
     // ---
 
     private void getCurrentUser(int userId){
-        mDisposable.add(itemViewModel.getUser(userId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::updateHeader));
+        this.itemViewModel.getUser(userId).observe(this, this::updateHeader);
     }
 
     // ---
 
     private void getItems(int userId){
-        mDisposable.add(itemViewModel.getItems(userId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::updateItemsList));
+        this.itemViewModel.getItems(userId).observe(this, this::updateItemsList);
     }
 
     private void createItem(){
         Item item = new Item(this.editText.getText().toString(), this.spinner.getSelectedItemPosition(), USER_ID);
         this.editText.setText("");
-        mDisposable.add(itemViewModel.createItem(item)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
+        this.itemViewModel.createItem(item);
     }
 
     private void deleteItem(Item item){
-        mDisposable.add(itemViewModel.deleteItem(item.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
+        this.itemViewModel.deleteItem(item.getId());
     }
 
     private void updateItem(Item item){
         item.setSelected(!item.getSelected());
-        mDisposable.add(itemViewModel.updateItem(item)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
+        this.itemViewModel.updateItem(item);
     }
 
     // -------------------

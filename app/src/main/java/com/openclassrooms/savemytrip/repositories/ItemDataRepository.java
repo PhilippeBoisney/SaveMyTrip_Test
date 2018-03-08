@@ -1,11 +1,11 @@
 package com.openclassrooms.savemytrip.repositories;
 
+import android.arch.lifecycle.LiveData;
+
 import com.openclassrooms.savemytrip.database.dao.ItemDao;
 import com.openclassrooms.savemytrip.models.Item;
 
 import java.util.List;
-
-import io.reactivex.Flowable;
 
 /**
  * Created by Philippe on 27/02/2018.
@@ -21,7 +21,7 @@ public class ItemDataRepository {
 
     // --- GET ---
 
-    public Flowable<List<Item>> getItems(long userId){
+    public LiveData<List<Item>> getItems(long userId){
         return this.itemDao.getItems(userId);
     }
 

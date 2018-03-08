@@ -1,9 +1,9 @@
 package com.openclassrooms.savemytrip.repositories;
 
+import android.arch.lifecycle.LiveData;
+
 import com.openclassrooms.savemytrip.database.dao.UserDao;
 import com.openclassrooms.savemytrip.models.User;
-
-import io.reactivex.Flowable;
 
 /**
  * Created by Philippe on 28/02/2018.
@@ -18,7 +18,7 @@ public class UserDataRepository {
     }
 
     // --- GET USER ---
-    public Flowable<User> getUser(long userId){
+    public LiveData<User> getUser(long userId){
         return this.userDao.getUser(userId);
     }
 }
